@@ -1,0 +1,68 @@
+name: none
+model: base
+use_tb_logger: false
+distortion: sr
+scale: 1
+gpu_ids: [0]
+
+datasets:
+  train:
+    name: HDRTV1K
+    mode: LQGT_base
+    dataroot_LQ: ./dataset/training_set/train_sdr_sub_c096_s240
+    dataroot_GT: ./dataset/training_set/train_hdr_sub_c096_s240
+    use_shuffle: true
+    n_workers: 32
+    batch_size: 32
+    GT_size: 96
+    use_flip: false
+    use_rot: false
+  val:
+    name: HDRTV1K
+    mode: LQGT_base
+    dataroot_LQ: ./dataset/test_set/test_sdr
+    dataroot_GT: ./dataset/test_set/test_hdr
+    save_img: false
+
+network_G:
+  which_model_G: DFT
+  inp_channels: 3
+  out_channels: 3
+  dim: 48
+  num_heads: 1
+  ffn_expansion_factor: 1
+  bias: true
+  LayerNorm_type: 'WithBias'
+  num_blocks: [1, 2, 4]
+  down_scales: [2, 2, 2]
+  LowPassDiverseFilteringPerConvKernelSize: 3
+  LowPassFilterKernelSize: 3
+  LowPassDiverseFilteringPerConvLayer: 3
+
+path:
+  root: ./
+#  pretrain_model_G: *.pth
+  strict_load: true
+#  resume_state: *.state
+
+train:
+  lr_G: !!float 1e-3
+  lr_scheme: MultiStepLR
+  beta1: 0.9
+  beta2: 0.99
+  niter: 100000
+  warmup_iter: -1
+
+  lr_scheme: MultiStepLR
+  lr_steps: [20000, 40000, 60000, 80000]
+  lr_gamma: 0.5
+
+  pixel_criterion: l1
+  pixel_weight: 1.0
+
+  manual_seed: 10
+  val_freq: !!float 1e5
+
+logger:
+  print_freq: 100
+  save_checkpoint_freq: !!float 5e3
