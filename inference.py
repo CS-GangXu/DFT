@@ -13,7 +13,7 @@ import data.util as dataUtil
 parser = argparse.ArgumentParser()
 parser.add_argument('--test_hdr', type=str, default='./dataset/test_set/test_hdr')
 parser.add_argument('--test_sdr', type=str, default='./dataset/test_set/test_sdr')
-parser.add_argument('--config', type=str, default='./config.yml')
+parser.add_argument('--config', type=str, default='./options/train/config.yml')
 parser.add_argument('--parameter', type=str, default='./dft.pth')
 parser.add_argument('--output', type=str, default='./output')
 args = parser.parse_args()

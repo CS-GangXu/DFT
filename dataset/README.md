@@ -1,0 +1,1 @@
+extract the HDR and SDR images into this folder.
