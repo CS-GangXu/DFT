@@ -7,6 +7,6 @@
 
 ### Training
 1. create environment according to the 'environment.yaml'.
-2. Please download the 'training_set.tar' from [Dropbox](https://www.dropbox.com/scl/fi/zaqgji66w2ktb0525adj7/training_set.tar?rlkey=q887uthn3n2352cgf5mfgti2c&st=z08jv8qt&dl=0).
+2. Please download the 'training_set.tar' from [Baidu Netdisk (code: dpmx)](https://pan.baidu.com/s/16mrlET0-CzBKpO-_e-k2cA?pwd=dpmx). 
 3. Extract the image from the 'training_set.tar' and origanize the content as 'dataset/training_set/train_hdr_sub_c096_s240' and 'dataset/training_set/train_sdr_sub_c096_s240'.
 4. Run 'python train.py -opt options/train/config.yml'.
